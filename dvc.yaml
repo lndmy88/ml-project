@@ -1,0 +1,33 @@
+stages:
+  prepare_data:
+    cmd: python src/prepare_data.py
+    deps:
+      - src/prepare_data.py
+      - data/raw
+    outs:
+      - data/processed
+
+  engineer_features:
+    cmd: python src/engineer_features.py
+    deps:
+      - src/engineer_features.py
+      - data/processed
+    outs:
+      - data/training
+      - data/test
+
+  train_model:
+    cmd: python src/train_model.py
+    deps:
+      - src/train_model.py
+      - data/training
+    outs:
+      - registered_models/best_weather_regressor.joblib
+
+  evaluate_model:
+    cmd: python src/evaluate_model.py
+    deps:
+      - src/evaluate_model.py       
+      - registered_models/best_weather_regressor.joblib
+      - data/test
+  

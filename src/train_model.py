@@ -1,3 +1,4 @@
+import os
 import pandas as pd
 import mlflow
 import mlflow.sklearn
@@ -40,7 +41,10 @@ def train_model(X_train, y_train):
     rf.fit(X_train, y_train)
 
     # Export model to joblib
-    joblib.dump(rf, "registered_models/best_weather_regressor.joblib")
+    MODEL_DIR = "registered_models"
+    os.makedirs(MODEL_DIR, exist_ok=True)
+    output_path = os.path.join(MODEL_DIR, "best_weather_regressor.joblib")
+    joblib.dump(rf,  output_path)
 
 if __name__ == "__main__":
     train_model("data/training/X_train_scaled.csv", "data/training/y_train.csv")

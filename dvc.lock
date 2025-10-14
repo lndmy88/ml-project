@@ -1,0 +1,76 @@
+schema: '2.0'
+stages:
+  prepare_data:
+    cmd: python src/prepare_data.py
+    deps:
+    - path: data/raw
+      hash: md5
+      md5: 3eb5f2b8af5264ea8223291665b44944.dir
+      size: 829817
+      nfiles: 1
+    - path: src/prepare_data.py
+      hash: md5
+      md5: 0043dfe1909bff0742a4e9a5e05d8b08
+      size: 1132
+    outs:
+    - path: data/processed
+      hash: md5
+      md5: 2736ac784411cbf9156f086d5e08f192.dir
+      size: 819160
+      nfiles: 1
+  engineer_features:
+    cmd: python src/engineer_features.py
+    deps:
+    - path: data/processed
+      hash: md5
+      md5: 2736ac784411cbf9156f086d5e08f192.dir
+      size: 819160
+      nfiles: 1
+    - path: src/engineer_features.py
+      hash: md5
+      md5: 9e3ca1cb4bd4382bbf943639217c271b
+      size: 2651
+    outs:
+    - path: data/test
+      hash: md5
+      md5: d1e4881a57da1dba08d6274d884a7635.dir
+      size: 225642
+      nfiles: 2
+    - path: data/training
+      hash: md5
+      md5: a121199cffaf662748de611444f5080d.dir
+      size: 903152
+      nfiles: 2
+  train_model:
+    cmd: python src/train_model.py
+    deps:
+    - path: data/training
+      hash: md5
+      md5: a121199cffaf662748de611444f5080d.dir
+      size: 903152
+      nfiles: 2
+    - path: src/train_model.py
+      hash: md5
+      md5: dbeb573388c4c58af58be6775ca7df8f
+      size: 1796
+    outs:
+    - path: registered_models/best_weather_regressor.joblib
+      hash: md5
+      md5: ae2f6edd451a6faa80c11004796b2ef5
+      size: 6373825
+  evaluate_model:
+    cmd: python src/evaluate_model.py
+    deps:
+    - path: data/test
+      hash: md5
+      md5: d1e4881a57da1dba08d6274d884a7635.dir
+      size: 225642
+      nfiles: 2
+    - path: registered_models/best_weather_regressor.joblib
+      hash: md5
+      md5: ae2f6edd451a6faa80c11004796b2ef5
+      size: 6373825
+    - path: src/evaluate_model.py
+      hash: md5
+      md5: 792d0872df777c1d5c5be51f21fcdb84
+      size: 1134

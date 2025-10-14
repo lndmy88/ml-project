@@ -1,0 +1,14 @@
+artifact_uri: file:///Users/linhnguyen/Study/Profession/machine_learning_engineering/p1__simple_ml_project_w_dvc/mlruns/0/40507ddb88854aac85d91ae296f79875/artifacts
+end_time: 1760453689310
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 40507ddb88854aac85d91ae296f79875
+run_name: bouncy-conch-295
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1760453689299
+status: 3
+tags: []
+user_id: linhnguyen
