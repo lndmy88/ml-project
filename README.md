@@ -27,3 +27,6 @@ pip install -r requirements.txt
 
 **Install mlflow
 pip install mlflow# ml-project
+
+**Install dvc
+pip install dvc
