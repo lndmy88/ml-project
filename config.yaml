@@ -1,0 +1,23 @@
+data:
+  raw_path: data/raw
+  raw_file: london_weather__raw.csv
+  processed_path: data/processed
+  processed_file: london_weather__processed.csv
+  train_path: data/training
+  train_x: X_train_scaled.csv
+  train_y: y_train.csv
+  test_path: data/test
+  test_x: X_test_scaled.csv
+  test_y: y_test.csv
+
+artifacts:
+  model_path: registered_models
+  model_name: best_weather_regressor
+  model_filename: best_weather_regressor.joblib
+  reports_path: tracking_reports
+  metrics_filename: metrics.json
+  plots_path: reports/figures
+
+mlflow:
+  tracking_uri: http://localhost:5000
+  experiment_name: RandomForestRegressor-Weather

@@ -1,0 +1,14 @@
+artifact_uri: file:///Users/linhnguyen/Study/Profession/machine_learning_engineering/p1__simple_ml_project_w_dvc/mlruns/0/c8829f1b51314537b07a784046947edb/artifacts
+end_time: 1760549867868
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: c8829f1b51314537b07a784046947edb
+run_name: invincible-hen-577
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1760549867856
+status: 3
+tags: []
+user_id: linhnguyen

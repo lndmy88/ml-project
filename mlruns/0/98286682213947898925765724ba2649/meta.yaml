@@ -1,0 +1,14 @@
+artifact_uri: file:///Users/linhnguyen/Study/Profession/machine_learning_engineering/p1__simple_ml_project_w_dvc/mlruns/0/98286682213947898925765724ba2649/artifacts
+end_time: 1760551608739
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 98286682213947898925765724ba2649
+run_name: ambitious-wolf-496
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1760551608728
+status: 3
+tags: []
+user_id: linhnguyen

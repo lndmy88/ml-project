@@ -1,9 +1,12 @@
 import os
 import pandas as pd
+from utils import load_config
 
-RAW_DIR = "data/raw"
-PROCESSED_DIR = "data/processed"
-PROCESSED_FILE = "london_weather__processed.csv"
+config = load_config()
+
+RAW_DIR = config["data"]["raw_path"]
+PROCESSED_DIR = config["data"]["processed_path"]
+PROCESSED_FILE = config["data"]["processed_file"]  # e.g., "processed_data.csv"
 
 def load_raw_data():
     """Load all CSV files in data/raw/ into a single DataFrame."""

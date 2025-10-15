@@ -3,7 +3,24 @@ from sklearn.model_selection import train_test_split
 from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import StandardScaler
 import pandas as pd
+from utils import load_config, load_params
 
+# Load configuration
+config = load_config()
+
+PROCESSED_DIR = config["data"]["processed_path"]
+PROCESSED_FILE = config["data"]["processed_file"]  # e.g., "l
+TRAINING_DIR = config["data"]["train_path"]
+TRAINING_FILE_X = config["data"]["train_x"]
+TRAINING_FILE_Y = config["data"]["train_y"]
+TEST_DIR = config["data"]["test_path"]
+TEST_FILE_X = config["data"]["test_x"]
+TEST_FILE_Y = config["data"]["test_y"]
+
+# Load params
+params = load_params()
+TEST_SIZE=params["train"]["test_size"]
+RANDOM_STATE=params["train"]["random_state"]
 
 def engineer_features(weather):
     """
@@ -16,7 +33,7 @@ def engineer_features(weather):
 
     # Split into train and test sets (80% train, 20% test)
     X_train, X_test, y_train, y_test = train_test_split(
-        X, y, test_size=0.2, random_state=42
+        X, y, test_size=TEST_SIZE, random_state=RANDOM_STATE
     )
 
     # Impute missing values with mean
@@ -40,12 +57,7 @@ def engineer_features(weather):
     y_test_df = pd.DataFrame(y_test)
 
     # Save to files
-    TRAINING_DIR = "data/training"
-    TRAINING_FILE_X = "X_train_scaled.csv"
-    TRAINING_FILE_Y = "y_train.csv"
-    TEST_DIR = "data/test"
-    TEST_FILE_X = "X_test_scaled.csv"
-    TEST_FILE_Y = "y_test.csv"
+   
     os.makedirs(TRAINING_DIR, exist_ok=True)
     os.makedirs(TEST_DIR, exist_ok=True)
     train_output_path_x = os.path.join(TRAINING_DIR, TRAINING_FILE_X)
@@ -63,8 +75,8 @@ def engineer_features(weather):
     
 if __name__ == "__main__":
     # Load the processed data
-    weather = pd.read_csv("data/processed/london_weather__processed.csv")
+    weather = pd.read_csv(os.path.join(PROCESSED_DIR, PROCESSED_FILE))
 
     # Perform feature engineering
     engineer_features(weather)
-    print("Feature engineering completed and data saved to data/training and data/test directories.")
+    print(f"Feature engineering completed and data saved to {TRAINING_DIR} and {TEST_DIR} directories.")

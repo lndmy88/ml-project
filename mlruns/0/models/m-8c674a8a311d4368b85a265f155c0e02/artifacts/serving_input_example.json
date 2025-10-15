@@ -1,0 +1,18 @@
+{
+  "dataframe_split": {
+    "columns": [
+      "Unnamed: 0",
+      "sunshine",
+      "global_radiation",
+      "cloud_cover"
+    ],
+    "data": [
+      [
+        4536,
+        0.3148653476361286,
+        1.051027318749137,
+        0.355495700787328
+      ]
+    ]
+  }
+}
