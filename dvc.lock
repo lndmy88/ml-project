@@ -51,8 +51,8 @@ stages:
       nfiles: 2
     - path: src/train_model.py
       hash: md5
-      md5: dbeb573388c4c58af58be6775ca7df8f
-      size: 1796
+      md5: 040b07c511374cadeeb08581aeb65295
+      size: 2295
     outs:
     - path: registered_models/best_weather_regressor.joblib
       hash: md5

@@ -5,6 +5,7 @@ import mlflow.sklearn
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
 import joblib
+from mlflow.models import infer_signature
 
 def train_model(X_train, y_train):
     """
@@ -39,12 +40,24 @@ def train_model(X_train, y_train):
             n_jobs=-1
     )
     rf.fit(X_train, y_train)
+    y_pred = rf.predict(X_test)
 
     # Export model to joblib
     MODEL_DIR = "registered_models"
     os.makedirs(MODEL_DIR, exist_ok=True)
     output_path = os.path.join(MODEL_DIR, "best_weather_regressor.joblib")
     joblib.dump(rf,  output_path)
+
+    # Log the model with MLflow
+    signature = infer_signature(X_test, y_pred)
+    logged_model = mlflow.sklearn.log_model(rf, name="best_weather_regressor", signature=signature, input_example=X_test.head(1))
+
+    # Register the model
+    mlflow.register_model(
+        #model_uri =   f"runs:/{mlflow.active_run().info.run_id}/model",
+        model_uri = logged_model.model_uri,
+        name="best_weather_regressor"
+    )
 
 if __name__ == "__main__":
     train_model("data/training/X_train_scaled.csv", "data/training/y_train.csv")

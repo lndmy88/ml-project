@@ -1,0 +1,35 @@
+artifact_path: file:///Users/linhnguyen/Study/Profession/machine_learning_engineering/p1__simple_ml_project_w_dvc/mlruns/0/models/m-d476b8faf1a2409d9fa5d621cfddc8d3/artifacts
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.pkl
+    predict_fn: predict
+    python_version: 3.10.0
+  sklearn:
+    code: null
+    pickled_model: model.pkl
+    serialization_format: cloudpickle
+    sklearn_version: 1.7.2
+is_signature_from_type_hint: false
+mlflow_version: 3.4.0
+model_id: m-d476b8faf1a2409d9fa5d621cfddc8d3
+model_size_bytes: 6361568
+model_uuid: m-d476b8faf1a2409d9fa5d621cfddc8d3
+prompts: null
+run_id: a59d88f6097c4e669062b9e7ae3f3a0b
+saved_input_example_info:
+  artifact_path: input_example.json
+  pandas_orient: split
+  serving_input_path: serving_input_example.json
+  type: dataframe
+signature:
+  inputs: '[{"type": "long", "name": "Unnamed: 0", "required": true}, {"type": "double",
+    "name": "sunshine", "required": true}, {"type": "double", "name": "global_radiation",
+    "required": true}, {"type": "double", "name": "cloud_cover", "required": true}]'
+  outputs: '[{"type": "tensor", "tensor-spec": {"dtype": "float64", "shape": [-1]}}]'
+  params: null
+type_hint_from_example: false
+utc_time_created: '2025-10-15 08:47:28.232585'
