@@ -7,7 +7,7 @@ import json
 
 from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
 from utils.utils import load_config, load_params
-from utils.mlflow_utils import log_data_version_info, log_dict_as_artifact, log_input_data, log_model_metrics
+from utils.mlflow_utils import log_dict_as_artifact, log_input_data, log_model_metrics
 
 # Load configuration
 config = load_config()
@@ -26,7 +26,7 @@ def evaluate_model(model, X_test, y_test):
     """
     Evaluate the trained model on the test set and log metrics to MLflow.
     """
-    model = joblib.load("registered_models/best_weather_regressor.joblib")
+    model = joblib.load(model)
 
     # Prepare test data
     X_test = pd.read_csv(X_test)

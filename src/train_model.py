@@ -7,7 +7,7 @@ from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
 import joblib
 from mlflow.models import infer_signature
 from utils.utils import load_config, load_params
-from utils.mlflow_utils import log_data_version_info, log_input_data, log_training_data_info
+from utils.mlflow_utils import log_input_data
 
 # Load configuration
 config = load_config()
@@ -31,7 +31,7 @@ MIN_SAMPLES_SPLIT=params["model"]["min_samples_split"]
 MIN_SAMPLES_LEAF=params["model"]["min_samples_leaf"]
 N_JOBS=params["model"]["n_jobs"]
 
-def train_model():
+def train_model(experiment_name=EXPERIMENT_NAME):
     """
     Train a machine learning model.
     """
@@ -52,7 +52,7 @@ def train_model():
     X_test = X_test[test_not_nan]
     y_test = y_test_df.loc[test_not_nan, 'mean_temp']
 
-    mlflow.set_experiment(EXPERIMENT_NAME)
+    mlflow.set_experiment(experiment_name)
 
     # Start MLflow run
     with mlflow.start_run(run_name="train_model"):
@@ -99,5 +99,5 @@ def train_model():
 
 
 if __name__ == "__main__":
-    train_model()
+    train_model(experiment_name=EXPERIMENT_NAME)
     print(F"Model training completed and model saved to {MODEL_DIR}/{MODEL_FILENAME}")

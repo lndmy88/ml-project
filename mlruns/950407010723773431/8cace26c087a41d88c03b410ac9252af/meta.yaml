@@ -1,0 +1,14 @@
+artifact_uri: file:///Users/linhnguyen/Study/Profession/machine_learning_engineering/p1__simple_ml_project_w_dvc/mlruns/950407010723773431/8cace26c087a41d88c03b410ac9252af/artifacts
+end_time: 1760766666732
+entry_point_name: ''
+experiment_id: '950407010723773431'
+lifecycle_stage: active
+run_id: 8cace26c087a41d88c03b410ac9252af
+run_name: train_model
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1760766663787
+status: 3
+tags: []
+user_id: linhnguyen

@@ -1,0 +1,10 @@
+artifact_location: file:///Users/linhnguyen/Study/Profession/machine_learning_engineering/p1__simple_ml_project_w_dvc/mlruns/950407010723773431/models/m-c0f60e16f46b4c4fb71192bed458b491/artifacts
+creation_timestamp: 1760766664887
+experiment_id: '950407010723773431'
+last_updated_timestamp: 1760766666664
+model_id: m-c0f60e16f46b4c4fb71192bed458b491
+model_type: null
+name: best_weather_regressor
+source_run_id: 8cace26c087a41d88c03b410ac9252af
+status: 2
+status_message: null

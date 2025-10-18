@@ -1,0 +1,14 @@
+artifact_uri: file:///Users/linhnguyen/Study/Profession/machine_learning_engineering/p1__simple_ml_project_w_dvc/mlruns/950407010723773431/38bf8e053f5c403f9f501e168db2f697/artifacts
+end_time: 1760766289298
+entry_point_name: ''
+experiment_id: '950407010723773431'
+lifecycle_stage: active
+run_id: 38bf8e053f5c403f9f501e168db2f697
+run_name: evaluate_model
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1760766288902
+status: 3
+tags: []
+user_id: linhnguyen
