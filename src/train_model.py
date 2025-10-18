@@ -6,10 +6,12 @@ from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
 import joblib
 from mlflow.models import infer_signature
-from utils import load_config, load_params
+from utils.utils import load_config, load_params
+from utils.mlflow_utils import log_data_version_info, log_input_data, log_training_data_info
 
 # Load configuration
 config = load_config()
+EXPERIMENT_NAME = config["mlflow"]["experiment_name"]
 TRAINING_DIR = config["data"]["train_path"]
 TRAINING_FILE_X = config["data"]["train_x"]
 TRAINING_FILE_Y = config["data"]["train_y"]
@@ -50,9 +52,15 @@ def train_model():
     X_test = X_test[test_not_nan]
     y_test = y_test_df.loc[test_not_nan, 'mean_temp']
 
+    mlflow.set_experiment(EXPERIMENT_NAME)
+
     # Start MLflow run
-    with mlflow.start_run(run_name="RandomForestRegressor-Weather"):
-    # Train model with tuned hyperparameters
+    with mlflow.start_run(run_name="train_model"):
+        # Log data version
+        log_input_data("data/training", artifact_name="training_data_info")
+        log_input_data("data/test", artifact_name="test_data_info")
+
+        # Train model with tuned hyperparameters
         rf = RandomForestRegressor(
             n_estimators=N_ESTIMATORS,
             max_depth=MAX_DEPTH,
@@ -60,26 +68,35 @@ def train_model():
             min_samples_leaf=MIN_SAMPLES_LEAF,
             random_state=RANDOM_STATE,
             n_jobs=N_JOBS
-    )
-    rf.fit(X_train, y_train)
-    y_pred = rf.predict(X_test)
+        )
+        rf.fit(X_train, y_train)
+        y_pred = rf.predict(X_test)
 
-    # Export model to joblib
-    
-    os.makedirs(MODEL_DIR, exist_ok=True)
-    output_path = os.path.join(MODEL_DIR, MODEL_FILENAME)
-    joblib.dump(rf,  output_path)
+        # Export model to joblib
+        
+        os.makedirs(MODEL_DIR, exist_ok=True)
+        output_path = os.path.join(MODEL_DIR, MODEL_FILENAME)
+        joblib.dump(rf,  output_path)
 
-    # Log the model with MLflow
-    signature = infer_signature(X_test, y_pred)
-    logged_model = mlflow.sklearn.log_model(rf, name=MODEL_NAME, signature=signature, input_example=X_test.head(1))
 
-    # Register the model
-    mlflow.register_model(
-        #model_uri =   f"runs:/{mlflow.active_run().info.run_id}/model",
-        model_uri = logged_model.model_uri,
-        name=MODEL_NAME
-    )
+        # Log model hyperparameters
+        mlflow.log_param("model_name", MODEL_NAME)
+        mlflow.log_param("model_type", rf.__class__.__name__)
+        mlflow.log_param("n_estimators", rf.n_estimators)
+        mlflow.log_param("random_state", rf.random_state)
+
+
+        # Log the model with MLflow
+        signature = infer_signature(X_test, y_pred)
+        logged_model = mlflow.sklearn.log_model(rf, name=MODEL_NAME, signature=signature, input_example=X_test.head(1))
+
+        # Register the model
+        mlflow.register_model(
+            #model_uri =   f"runs:/{mlflow.active_run().info.run_id}/model",
+            model_uri = logged_model.model_uri,
+            name=MODEL_NAME
+        )
+
 
 if __name__ == "__main__":
     train_model()

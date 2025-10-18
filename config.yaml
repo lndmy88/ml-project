@@ -9,6 +9,7 @@ data:
   test_path: data/test
   test_x: X_test_scaled.csv
   test_y: y_test.csv
+  lock_file: dvc.lock
 
 artifacts:
   model_path: registered_models

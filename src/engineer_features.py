@@ -3,7 +3,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import StandardScaler
 import pandas as pd
-from utils import load_config, load_params
+from utils.utils import load_config, load_params
 
 # Load configuration
 config = load_config()

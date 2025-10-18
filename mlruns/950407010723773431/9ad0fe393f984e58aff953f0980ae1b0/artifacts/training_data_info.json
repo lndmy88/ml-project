@@ -1,0 +1,8 @@
+{
+    "data_path": "data/training",
+    "git_commit": "b54110f03c14b1ae1b618741a2a74f1378125cf8",
+    "dvc_hash": {
+        "X_train_scaled.csv": "7fc04ae01e2753d116ab92dcc396b0cb",
+        "y_train.csv": "b7bb38923b512cf91370c7c3efc3eb54"
+    }
+}

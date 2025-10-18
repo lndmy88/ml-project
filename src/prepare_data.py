@@ -1,6 +1,6 @@
 import os
 import pandas as pd
-from utils import load_config
+from utils.utils import load_config
 
 config = load_config()
 

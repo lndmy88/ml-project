@@ -1,0 +1,12 @@
+{
+  "processed_dvc_version": "b54110f03c14b1ae1b618741a2a74f1378125cf8",
+  "processed_data_hash": {
+    "data/processed": "2736ac784411cbf9156f086d5e08f192.dir"
+  },
+  "training_dvc_version": "b54110f03c14b1ae1b618741a2a74f1378125cf8",
+  "test_dvc_version": "b54110f03c14b1ae1b618741a2a74f1378125cf8",
+  "features_data_hash": {
+    "data/test": "d1e4881a57da1dba08d6274d884a7635.dir",
+    "data/training": "a121199cffaf662748de611444f5080d.dir"
+  }
+}

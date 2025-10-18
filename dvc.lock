@@ -10,8 +10,8 @@ stages:
       nfiles: 1
     - path: src/prepare_data.py
       hash: md5
-      md5: 0078196c8594c32174fbbe1bdff9ba89
-      size: 1249
+      md5: d7f9c69428edd4cc05d4c288199b6220
+      size: 1255
     outs:
     - path: data/processed
       hash: md5
@@ -28,8 +28,13 @@ stages:
       nfiles: 1
     - path: src/engineer_features.py
       hash: md5
-      md5: 8666a76393ce5ae9ff121e29d1722888
-      size: 3031
+      md5: ebe0a637ac78349927edd1dc865363c0
+      size: 3037
+    params:
+      params.yaml:
+        train:
+          test_size: 0.2
+          random_state: 42
     outs:
     - path: data/test
       hash: md5
@@ -51,8 +56,18 @@ stages:
       nfiles: 2
     - path: src/train_model.py
       hash: md5
-      md5: 5989cc73966f42e66b88d933c854605b
-      size: 3022
+      md5: 33bf98c934b798e16346254d4f190e8c
+      size: 3714
+    params:
+      params.yaml:
+        model:
+          name: random_forest
+          n_estimators: 200
+          max_depth: 8
+          min_samples_split: 2
+          min_samples_leaf: 1
+          random_state: 42
+          n_jobs: -1
     outs:
     - path: registered_models/best_weather_regressor.joblib
       hash: md5
@@ -72,5 +87,11 @@ stages:
       size: 6373825
     - path: src/evaluate_model.py
       hash: md5
-      md5: 8fd6341f39594415d4e96d9e08c62008
-      size: 1939
+      md5: 25a4df144bce62964263ed2b675bd280
+      size: 2467
+    params:
+      params.yaml:
+        evaluate.metrics:
+        - r2_score
+        - mean_absolute_error
+        - root_mean_squared_error

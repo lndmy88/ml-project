@@ -1,0 +1,14 @@
+artifact_uri: file:///Users/linhnguyen/Study/Profession/machine_learning_engineering/p1__simple_ml_project_w_dvc/mlruns/0/88f2eb86e1884973a4d56b16d9a28b00/artifacts
+end_time: 1760674498328
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 88f2eb86e1884973a4d56b16d9a28b00
+run_name: RandomForestRegressor-Weather
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1760674495612
+status: 3
+tags: []
+user_id: linhnguyen

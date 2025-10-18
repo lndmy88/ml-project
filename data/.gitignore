@@ -1,2 +1,8 @@
 /training
 /test
+/processed
+.DS_Store
+__pycache__/
+*.pyc
+.env
+.vscode/

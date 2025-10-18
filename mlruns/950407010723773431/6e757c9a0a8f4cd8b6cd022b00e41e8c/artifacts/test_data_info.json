@@ -1,0 +1,8 @@
+{
+    "data_path": "data/test",
+    "git_commit": "b54110f03c14b1ae1b618741a2a74f1378125cf8",
+    "dvc_hash": {
+        "X_test_scaled.csv": "23072f131c6a8e91b3b7c89176136793",
+        "y_test.csv": "eb1cbfdfce7e6d18f24d1a0ea54e6aa6"
+    }
+}
